@@ -1,14 +1,15 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import { BreadcrumbNav } from "@/components/breadcrumb";
 import {
   SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
+  SidebarProvider
 } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 
-const notoSans = Noto_Sans({
+import { Outfit } from "next/font/google";
+
+const font = Outfit({
   subsets: ["latin"],
   display: 'swap',
 });
@@ -25,14 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${notoSans.className} antialiased`}>
+      <body className={`${font.className} antialiased`}>
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
-              <div className="flex items-center gap-2 px-4">
-                <SidebarTrigger className="-ml-1" />
-              </div>
+            <header className="flex h-16 shrink-0 items-center px-8">
+              <BreadcrumbNav />
             </header>
             <main className="py-4 px-8">
               {children}

@@ -1,15 +1,15 @@
 "use client"
 
 import { type LucideIcon } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem
 } from "@/components/ui/sidebar"
-import Link from "next/link"
 
 export function NavMain({
   items,
@@ -18,21 +18,25 @@ export function NavMain({
     title: string
     url: string
     icon?: LucideIcon
-    isActive?: boolean
   }[]
 }) {
+  const pathname = usePathname()
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Menu</SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu className="space-y-1">
         {items.map((item) => (
           <SidebarMenuItem key={item.title}>
-            <Link href={item.url}>
-              <SidebarMenuButton tooltip={item.title}>
+            <SidebarMenuButton
+              asChild
+              isActive={pathname === item.url}
+              className="py-5 px-4 relative font-medium text-muted-foreground transition-all hover:text-foreground rounded-md data-[active=true]:bg-white data-[active=true]:shadow-sm data-[active=true]:text-foreground"
+            >
+              <Link href={item.url}>
                 {item.icon && <item.icon />}
-                {item.title}
-              </SidebarMenuButton>
-            </Link>
+                <span>{item.title}</span>
+              </Link>
+            </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
       </SidebarMenu>

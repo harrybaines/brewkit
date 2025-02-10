@@ -1,3 +1,7 @@
+import { CreateProjectForm } from "@/components/create-project-form"
+import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link"
+
 export default function Page() {
   return (
     <div className="flex flex-1 flex-col space-y-8">
@@ -8,13 +12,11 @@ export default function Page() {
           <p className="text-muted-foreground">Manage your projects in one place.</p>
         </div>
 
-        <div className="mt-4 flex gap-3">
-          <button className="inline-flex items-center rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-black/80">
-            Create Project
-          </button>
-          <button className="inline-flex items-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
-            View Todos
-          </button>
+        <div className="mt-4 flex gap-1.5">
+          <CreateProjectForm />
+          <Link href="/projects" className={buttonVariants({ variant: "outline" })}>
+            View Projects
+          </Link>
         </div>
       </div>
 
