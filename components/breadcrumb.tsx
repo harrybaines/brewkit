@@ -3,6 +3,7 @@
 import { ChevronRight, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import React from "react"
 
 import {
   Breadcrumb,
@@ -40,30 +41,32 @@ export function BreadcrumbNav() {
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator>
-          <ChevronRight className="h-4 w-4" />
-        </BreadcrumbSeparator>
 
         {pathname === "/" ? (
-          <BreadcrumbItem>
-            <BreadcrumbPage>Dashboard</BreadcrumbPage>
-          </BreadcrumbItem>
+          <>
+            <BreadcrumbSeparator>
+              <ChevronRight className="h-4 w-4" />
+            </BreadcrumbSeparator>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            </BreadcrumbItem>
+          </>
         ) : (
           breadcrumbs.map(({ href, label, isLast }, index) => (
-            <BreadcrumbItem key={href + index}>
-              {isLast ? (
-                <BreadcrumbPage>{label}</BreadcrumbPage>
-              ) : (
-                <>
+            <React.Fragment key={href + index}>
+              <BreadcrumbSeparator>
+                <ChevronRight className="h-4 w-4" />
+              </BreadcrumbSeparator>
+              <BreadcrumbItem>
+                {isLast ? (
+                  <BreadcrumbPage>{label}</BreadcrumbPage>
+                ) : (
                   <BreadcrumbLink asChild>
                     <Link href={href}>{label}</Link>
                   </BreadcrumbLink>
-                  <BreadcrumbSeparator>
-                    <ChevronRight className="h-4 w-4" />
-                  </BreadcrumbSeparator>
-                </>
-              )}
-            </BreadcrumbItem>
+                )}
+              </BreadcrumbItem>
+            </React.Fragment>
           ))
         )}
       </BreadcrumbList>

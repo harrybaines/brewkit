@@ -30,7 +30,7 @@ export function NavMain({
             <SidebarMenuButton
               asChild
               isActive={pathname === item.url}
-              className="py-5 px-4 relative font-medium text-muted-foreground transition-all hover:text-foreground rounded-md data-[active=true]:bg-white data-[active=true]:shadow-sm data-[active=true]:text-foreground"
+              className="relative py-5 px-4 font-medium text-sidebar-muted transition-all hover:bg-sidebar-accent hover:text-sidebar-foreground rounded-md data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground data-[active=true]:shadow-sm"
             >
               <Link href={item.url}>
                 {item.icon && <item.icon />}

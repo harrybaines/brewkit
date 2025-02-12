@@ -50,7 +50,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" className="border-none" {...props}>
+    <Sidebar collapsible="icon" className="border-none bg-sidebar-background" {...props}>
       <SidebarHeader className="px-6 py-[18px]">
         <span className="text-lg font-semibold">Brewkit</span>
       </SidebarHeader>

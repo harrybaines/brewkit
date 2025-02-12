@@ -1,5 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { BreadcrumbNav } from "@/components/breadcrumb";
+import { ModeToggle } from "@/components/mode-toggle";
 import {
   SidebarInset,
   SidebarProvider
@@ -7,6 +8,7 @@ import {
 import type { Metadata } from "next";
 import "./globals.css";
 
+import { ThemeProvider } from "@/components/theme-provider";
 import { Outfit } from "next/font/google";
 
 const font = Outfit({
@@ -25,19 +27,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${font.className} antialiased`}>
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <header className="flex h-16 shrink-0 items-center px-8">
-              <BreadcrumbNav />
-            </header>
-            <main className="py-4 px-8">
-              {children}
-            </main>
-          </SidebarInset>
-        </SidebarProvider>
+        <ThemeProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <header className="flex h-16 shrink-0 items-center justify-between px-8">
+                <BreadcrumbNav />
+                <ModeToggle />
+              </header>
+              <main className="py-4 px-8">
+                {children}
+              </main>
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
