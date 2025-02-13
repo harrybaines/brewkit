@@ -79,17 +79,32 @@ brewkit/
 
 ## 💻 Data Table Example
 
+1. First, define your types (`tables/types.ts`):
+
 ```typescript
+import { z } from "zod";
+
 // Define schema with Zod
-const paymentSchema = z.object({
+export const paymentSchema = z.object({
   id: z.string(),
   amount: z.number(),
   status: z.enum(["pending", "processing", "success", "failed"]),
   email: z.string().email(),
 });
 
-// Create type-safe columns
-const columns = [
+// Infer TypeScript type from schema
+export type Payment = z.infer<typeof paymentSchema>;
+```
+
+2. Configure your columns (`tables/columns.tsx`):
+
+```typescript
+import { ColumnDef } from "@tanstack/react-table";
+import { DataTableColumnHeader } from "@/components/ui/data-table/data-table-column-header";
+import { DataTableCurrencyCell } from "@/components/ui/data-table/data-table-currency-cell";
+import { type Payment } from "./types";
+
+export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "email",
     header: ({ column }) => (
@@ -108,21 +123,43 @@ const columns = [
 ];
 ```
 
-## 📚 Learn More
+3. Use the DataTable in your page (`tables/page.tsx`):
 
-To learn more about the technologies used:
+```typescript
+import { columns } from "./columns";
+import { type Payment } from "./types";
+import { DataTable } from "@/components/ui/data-table";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
-- [TanStack Table Guide](https://tanstack.com/table/latest/docs/guide/introduction) - learn about table features
-- [Shadcn/ui Components](https://ui.shadcn.com/docs) - explore available components
-- [Tailwind CSS](https://tailwindcss.com/docs) - style your components
+// Your data
+const payments: Payment[] = [
+  {
+    id: "1",
+    amount: 100,
+    status: "success",
+    email: "user@example.com",
+  },
+  // ...more data
+];
+
+export default function TablePage() {
+  return (
+    <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={payments} />
+    </div>
+  );
+}
+```
+
+The DataTable component handles:
+
+- Column sorting
+- Row selection
+- Pagination
+- Mobile responsiveness
+- Type safety throughout
 
 ## 🚀 Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## 📄 License
-
-MIT © [Your Name]
