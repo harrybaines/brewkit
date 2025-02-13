@@ -6,11 +6,12 @@
     <a href="#features">Features</a> •
     <a href="#tech-stack">Tech Stack</a> •
     <a href="#getting-started">Getting Started</a> •
-    <a href="#project-structure">Project Structure</a>
+    <a href="#project-structure">Project Structure</a> •
+    <a href="#data-table-example">Data Table Example</a>
   </p>
 </div>
 
-## ✨ Features
+## Features
 
 - 🎯 **Type Safety** - Built with TypeScript for robust development
 - 🎨 **Modern UI** - Styled with Tailwind CSS and Shadcn/ui components
@@ -18,14 +19,14 @@
 - 🚀 **Next.js App Router** - Modern routing and server components
 - 📱 **Responsive Design** - Mobile-first approach
 
-## 🖼️ Preview
+## Preview
 
 <div align="center">
   <img src="public/assets/preview.png" alt="Brewkit Preview" width="800" style="border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" />
   <p align="center"><em>As of Feburary 13th, 2025</em></p>
 </div>
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Next.js 15 - React framework
 - TypeScript - Language
@@ -34,7 +35,7 @@
 - TanStack Table - Table Management
 - Zod - Schema Validation
 
-## 🚀 Getting Started
+## Getting Started
 
 First, clone and install dependencies:
 
@@ -51,7 +52,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 brewkit/
@@ -77,7 +78,7 @@ brewkit/
 └── types/              # Global type definitions
 ```
 
-## 💻 Data Table Example
+## Data Table Example
 
 1. First, define your types (`tables/types.ts`):
 
@@ -158,7 +159,7 @@ The DataTable component handles:
 - Mobile responsiveness
 - Type safety throughout
 
-## 🚀 Deploy on Vercel
+## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
