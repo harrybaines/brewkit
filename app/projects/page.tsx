@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { PageHeader } from "@/components/ui/page-header"
 
 const projects = [
   {
@@ -38,15 +39,12 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <div className="flex flex-1 flex-col space-y-8">
-      <div className="flex items-center justify-between">
-        <div className="space-y-3">
-          <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
-          <p className="text-sm text-muted-foreground">
-            Manage your projects and track their progress.
-          </p>
-          <CreateProjectForm />
-        </div>
-      </div>
+      <PageHeader
+        title="Projects"
+        description="Manage your projects and track their progress."
+      >
+        <CreateProjectForm />
+      </PageHeader>
 
       <div className="space-y-4">
         {projects.map((project) => (

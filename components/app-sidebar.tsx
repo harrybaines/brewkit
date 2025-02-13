@@ -4,6 +4,7 @@ import {
   Home,
   PenIcon,
   Settings,
+  Table,
   User
 } from "lucide-react"
 import * as React from "react"
@@ -35,6 +36,11 @@ const data = {
       title: "Account",
       url: "/account",
       icon: User
+    },
+    {
+      title: "Tables",
+      url: "/tables",
+      icon: Table
     },
     {
       title: "Settings",

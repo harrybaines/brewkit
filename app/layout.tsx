@@ -28,18 +28,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${font.className} antialiased`}>
+      <body className={font.className}>
         <ThemeProvider>
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
               <header className="flex h-16 shrink-0 items-center justify-between px-8">
-                <BreadcrumbNav />
+                <div className="flex items-center gap-4">
+                  <BreadcrumbNav />
+                </div>
                 <ModeToggle />
               </header>
-              <main className="py-4 px-8">
+              <div className="px-8 py-6">
                 {children}
-              </main>
+              </div>
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>
