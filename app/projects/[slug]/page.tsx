@@ -12,43 +12,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { prisma } from "@/lib/prisma"
+import { unstable_cache as cache } from "next/cache"
 
-// This would come from your database
-const projects = [
-  {
-    id: 1,
-    name: "Marketing Website",
-    description: "Company website and blog",
-    tasks: 12,
-    status: "In Progress",
-    startDate: "2024-01-15",
-    dueDate: "2024-04-01",
-    team: ["John Doe", "Jane Smith"],
-  },
-  {
-    id: 2,
-    name: "Mobile App",
-    description: "iOS and Android applications",
-    tasks: 8,
-    status: "Planning",
-    startDate: "2024-02-01",
-    dueDate: "2024-06-30",
-    team: ["Alice Johnson", "Bob Wilson"],
-  },
-  {
-    id: 3,
-    name: "Dashboard Redesign",
-    description: "Internal analytics dashboard",
-    tasks: 24,
-    status: "In Review",
-    startDate: "2024-03-01",
-    dueDate: "2024-05-15",
-    team: ["Charlie Brown", "Diana Prince"],
-  },
-]
+const getCachedProject = cache((slug) => {
+  return prisma.project.findUnique({
+    where: {
+      slug,
+    },
+  })
+})
 
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const project = projects.find((p) => p.id === parseInt(params.id))
+export default async function ProjectPage({ params }) {
+  const project = await getCachedProject(params.slug);
 
   if (!project) {
     notFound()
@@ -72,15 +48,15 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Tasks</span>
-                <Badge variant="secondary">{project.tasks} tasks</Badge>
+                {/* <Badge variant="secondary">{project.tasks} tasks</Badge> */}
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Start Date</span>
-                <span className="text-sm text-muted-foreground">{project.startDate}</span>
+                {/* <span className="text-sm text-muted-foreground">{project.startDate}</span> */}
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">Due Date</span>
-                <span className="text-sm text-muted-foreground">{project.dueDate}</span>
+                {/* <span className="text-sm text-muted-foreground">{project.dueDate}</span> */}
               </div>
             </CardContent>
           </Card>
@@ -108,7 +84,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <CardDescription>People working on this project</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2">
+            {/* <div className="space-y-2">
               {project.team.map((member) => (
                 <div
                   key={member}
@@ -120,7 +96,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   <span className="text-sm">{member}</span>
                 </div>
               ))}
-            </div>
+            </div> */}
           </CardContent>
         </Card>
       ),

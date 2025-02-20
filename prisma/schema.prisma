@@ -41,27 +41,29 @@ model User {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
   role      Role     @default(MEMBER)
 
-  projects Project[] @relation("ProjectOwner")
-  tasks    Task[]
+  tasks Task[]
+
+  @@map("user")
 }
 
 model Project {
   id          String        @id @default(uuid())
   name        String
+  slug        String        @unique
   description String?
   status      ProjectStatus @default(NOT_STARTED)
-  startDate   DateTime?
-  endDate     DateTime?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-
-  createdBy   User   @relation("ProjectOwner", fields: [createdById], references: [id])
-  createdById String
+  startDate   DateTime?     @map("start_date")
+  endDate     DateTime?     @map("end_date")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at")
 
   tasks Task[]
+
+  @@index([slug])
+  @@map("project")
 }
 
 model Task {
@@ -70,12 +72,14 @@ model Task {
   description String?
   status      TaskStatus @default(TODO)
   priority    Priority?
-  dueDate     DateTime?
-  createdAt   DateTime   @default(now())
+  dueDate     DateTime?  @map("due_date")
+  createdAt   DateTime   @default(now()) @map("created_at")
 
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  projectId String
+  projectId String  @map("project_id")
 
   assignedTo   User?   @relation(fields: [assignedToId], references: [id])
-  assignedToId String?
+  assignedToId String? @map("assigned_to_id")
+
+  @@map("task")
 }

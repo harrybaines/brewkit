@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Toaster } from "@/components/ui/sonner"
 import React from "react"
+import { createProject } from "@/actions/actions"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -65,7 +66,7 @@ export function CreateProjectForm() {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form action={createProject}>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="text-right">

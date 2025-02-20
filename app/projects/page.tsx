@@ -11,32 +11,18 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { PageHeader } from "@/components/ui/page-header"
+import { prisma } from "@/lib/prisma"
 
-const projects = [
-  {
-    id: 1,
-    name: "Marketing Website",
-    description: "Company website and blog",
-    tasks: 12,
-    status: "In Progress",
-  },
-  {
-    id: 2,
-    name: "Mobile App",
-    description: "iOS and Android applications",
-    tasks: 8,
-    status: "Planning",
-  },
-  {
-    id: 3,
-    name: "Dashboard Redesign",
-    description: "Internal analytics dashboard",
-    tasks: 24,
-    status: "In Review",
-  },
-]
+export default async function ProjectsPage() {
+  const projects = await prisma.project.findMany({
+    include: {
+      tasks: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    }
+  });
 
-export default function ProjectsPage() {
   return (
     <div className="flex flex-1 flex-col space-y-8">
       <PageHeader
@@ -48,8 +34,8 @@ export default function ProjectsPage() {
 
       <div className="space-y-4">
         {projects.map((project) => (
-          <Card key={project.id} className="transition-colors">
-            <Link href={`/projects/${project.id}`}>
+          <Card key={project.id} className="transition-colors shadow-none">
+            <Link href={`/projects/${project.slug}`}>
               <CardHeader className="flex flex-row items-center space-y-0 p-4 hover:bg-muted/50">
                 <div className="flex items-center gap-4">
                   <div className="rounded-md bg-primary/10 p-2">
@@ -61,7 +47,7 @@ export default function ProjectsPage() {
                   </div>
                 </div>
                 <div className="ml-auto flex items-center gap-2">
-                  <Badge variant="secondary">{project.tasks} tasks</Badge>
+                  {/* <Badge variant="secondary">{project.tasks} tasks</Badge> */}
                   <Badge variant="outline">{project.status}</Badge>
                   <Button variant="ghost" size="icon" className="ml-2 h-8 w-8">
                     <span className="sr-only">Open menu</span>
