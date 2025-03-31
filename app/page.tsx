@@ -1,10 +1,14 @@
 import { CreateProjectForm } from "@/components/create-project-form"
+import { DashboardHolidaySection } from "@/components/dashboard-holiday-section"
+import { DashboardQuickLinks } from "@/components/dashboard-quick-links"
+import { FinancialChart } from "@/components/financial-chart"
+import { TimesheetChart } from "@/components/timesheet-chart"
 import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
 
 export default function Page() {
   return (
-    <div className="flex flex-1 flex-col space-y-8">
+    <div className="flex flex-1 flex-col space-y-8 pb-40">
       {/* Header Section */}
       <div>
         <div className="space-y-2">
@@ -20,8 +24,11 @@ export default function Page() {
         </div>
       </div>
 
+      {/* Quick Links Section */}
+      <DashboardQuickLinks />
+
       {/* Stat Cards Grid */}
-      <div className="grid gap-4 md:grid-cols-3">
+      {/* <div className="grid gap-4 md:grid-cols-3">
         <div className="rounded-lg border bg-card p-6">
           <div className="flex flex-row items-center justify-between space-y-0 pb-2">
             <h3 className="text-sm font-medium">Total Projects</h3>
@@ -94,24 +101,29 @@ export default function Page() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Charts Section */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="rounded-lg border bg-card p-6">
+      <div>
+        <FinancialChart />
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-3">
+        <div className="md:col-span-1">
+          <TimesheetChart />
+        </div>
+
+        <div className="col-span-2 rounded-lg border bg-card p-6">
           <h3 className="mb-4 text-lg font-semibold">Task Completion Rate</h3>
           <div className="flex h-[200px] items-center justify-center text-sm text-muted-foreground">
             Task Completion Rate will appear here
           </div>
         </div>
-
-        <div className="rounded-lg border bg-card p-6">
-          <h3 className="mb-4 text-lg font-semibold">Category Distribution</h3>
-          <div className="flex h-[200px] items-center justify-center text-sm text-muted-foreground">
-            Category Distribution will appear here
-          </div>
-        </div>
       </div>
+
+      {/* Holiday Management Section */}
+      <DashboardHolidaySection />
+
     </div>
   )
 }

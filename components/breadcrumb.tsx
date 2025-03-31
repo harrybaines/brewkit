@@ -19,7 +19,7 @@ function generateBreadcrumbs(pathname: string) {
 
   return paths.map((path, index) => {
     const href = `/${paths.slice(0, index + 1).join("/")}`
-    const label = path.charAt(0).toUpperCase() + path.slice(1)
+    const label = path === "settings" ? "Settings" : path.charAt(0).toUpperCase() + path.slice(1)
     const isLast = index === paths.length - 1
 
     return { href, label, isLast }

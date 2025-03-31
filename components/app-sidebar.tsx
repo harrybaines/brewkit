@@ -1,11 +1,13 @@
 "use client"
 
 import {
+  CalendarIcon,
+  Clock10Icon,
   Home,
+  PencilIcon,
   PenIcon,
   Settings,
-  Table,
-  User
+  Table
 } from "lucide-react"
 import * as React from "react"
 
@@ -28,14 +30,24 @@ const data = {
       icon: Home,
     },
     {
+      title: "Timesheets",
+      url: "/timesheets",
+      icon: Clock10Icon,
+    },
+    {
       title: "Projects",
       url: "/projects",
       icon: PenIcon
     },
     {
-      title: "Account",
-      url: "/account",
-      icon: User
+      title: "Tasks",
+      url: "/tasks",
+      icon: PencilIcon
+    },
+    {
+      title: "Holidays",
+      url: "/holidays",
+      icon: CalendarIcon,
     },
     {
       title: "Tables",
@@ -56,7 +68,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" className="border-none bg-sidebar-background" {...props}>
+    <Sidebar collapsible="icon" className="border-none bg-sidebar-background" variant="inset" {...props}>
       <SidebarHeader className="px-6 py-[18px]">
         <span className="text-lg font-semibold">Brewkit</span>
       </SidebarHeader>

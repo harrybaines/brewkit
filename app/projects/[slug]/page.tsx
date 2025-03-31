@@ -24,7 +24,10 @@ const getCachedProject = cache((slug) => {
 })
 
 export default async function ProjectPage({ params }) {
-  const project = await getCachedProject(params.slug);
+  // Remove React.use() since it cannot be used in an async function
+  const { slug } = params;
+
+  const project = await getCachedProject(slug);
 
   if (!project) {
     notFound()
