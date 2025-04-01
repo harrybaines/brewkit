@@ -1,9 +1,10 @@
+import { AssignedTasksCard } from "@/components/assigned-tasks-card"
 import { CreateProjectForm } from "@/components/create-project-form"
 import { DashboardHolidaySection } from "@/components/dashboard-holiday-section"
 import { DashboardQuickLinks } from "@/components/dashboard-quick-links"
-import { FinancialChart } from "@/components/financial-chart"
 import { TimesheetChart } from "@/components/timesheet-chart"
 import { buttonVariants } from "@/components/ui/button"
+import { Clock } from "lucide-react"
 import Link from "next/link"
 
 export default function Page() {
@@ -104,20 +105,17 @@ export default function Page() {
       </div> */}
 
       {/* Charts Section */}
-      <div>
-        <FinancialChart />
-      </div>
-
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-1">
           <TimesheetChart />
         </div>
 
-        <div className="col-span-2 rounded-lg border bg-card p-6">
-          <h3 className="mb-4 text-lg font-semibold">Task Completion Rate</h3>
-          <div className="flex h-[200px] items-center justify-center text-sm text-muted-foreground">
-            Task Completion Rate will appear here
+        <div className="col-span-2 rounded-lg border bg-card p-5">
+          <div className="flex items-center gap-1.5 mb-3">
+            <Clock className="h-3.5 w-3.5 text-blue-500" />
+            <h3 className="text-base font-medium">My In-Progress Tasks</h3>
           </div>
+          <AssignedTasksCard />
         </div>
       </div>
 

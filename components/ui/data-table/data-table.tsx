@@ -23,8 +23,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { Input } from "@/components/ui/input"
 
+import { DataTableFilter } from "@/components/data-table-filter"
 import { DataTablePagination } from "@/components/ui/data-table/data-table-pagination"
 import { DataTableViewOptions } from "@/components/ui/data-table/data-table-view-options"
 
@@ -67,14 +67,15 @@ export function DataTable<TData, TValue>({
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <Input
+        {/* <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
-        />
+        /> */}
+        <DataTableFilter table={table} />
         <DataTableViewOptions table={table} />
       </div>
       <div className="rounded-md border">
