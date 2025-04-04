@@ -1,10 +1,8 @@
 "use client"
 
 import {
-  CalendarIcon,
-  Clock10Icon,
   Home,
-  PencilIcon,
+  PenBoxIcon,
   PenIcon,
   Settings,
   Table
@@ -30,9 +28,9 @@ const data = {
       icon: Home,
     },
     {
-      title: "Timesheets",
-      url: "/timesheets",
-      icon: Clock10Icon,
+      title: "Tasks",
+      url: "/tasks",
+      icon: PenBoxIcon
     },
     {
       title: "Projects",
@@ -40,20 +38,20 @@ const data = {
       icon: PenIcon
     },
     {
-      title: "Tasks",
-      url: "/tasks",
-      icon: PencilIcon
-    },
-    {
-      title: "Holidays",
-      url: "/holidays",
-      icon: CalendarIcon,
-    },
-    {
       title: "Tables",
       url: "/tables",
       icon: Table
     },
+    // {
+    //   title: "Timesheets",
+    //   url: "/timesheets",
+    //   icon: Clock10Icon,
+    // },
+    // {
+    //   title: "Holidays",
+    //   url: "/holidays",
+    //   icon: CalendarIcon,
+    // },
     {
       title: "Settings",
       url: "/settings",

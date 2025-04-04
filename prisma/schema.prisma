@@ -28,13 +28,22 @@ enum ProjectStatus {
 enum TaskStatus {
   TODO
   IN_PROGRESS
-  DONE
+  COMPLETED
+  BLOCKED
 }
 
 enum Priority {
   LOW
   MEDIUM
   HIGH
+  URGENT
+}
+
+enum TaskType {
+  FEATURE
+  BUG
+  DOCUMENTATION
+  IMPROVEMENT
 }
 
 model User {
@@ -69,9 +78,10 @@ model Project {
 model Task {
   id          String     @id @default(uuid())
   title       String
-  description String?
+  description String
   status      TaskStatus @default(TODO)
   priority    Priority?
+  type        TaskType?
   dueDate     DateTime?  @map("due_date")
   createdAt   DateTime   @default(now()) @map("created_at")
 
@@ -81,5 +91,10 @@ model Task {
   assignedTo   User?   @relation(fields: [assignedToId], references: [id])
   assignedToId String? @map("assigned_to_id")
 
+  @@index([status])
+  @@index([projectId])
+  @@index([assignedToId])
+  @@index([dueDate])
+  @@index([status, projectId])
   @@map("task")
 }

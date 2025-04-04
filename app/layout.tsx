@@ -10,6 +10,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { cn } from "@/lib/utils";
 import { Parkinsans } from 'next/font/google';
 
 const font = Parkinsans({
@@ -19,7 +21,7 @@ const font = Parkinsans({
 
 export const metadata: Metadata = {
   title: "Brewkit",
-  description: "Project management and time tracking",
+  description: "Project management for breweries",
 };
 
 export default function RootLayout({
@@ -28,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={font.className}>
+    <html lang="en" suppressHydrationWarning className={cn(font.className, "min-h-screen")}>
       <body>
         <ThemeProvider>
           <SidebarProvider>
@@ -52,6 +54,7 @@ export default function RootLayout({
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

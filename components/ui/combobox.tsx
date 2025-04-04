@@ -19,7 +19,7 @@ import {
 import { cn } from "@/lib/utils"
 
 interface ComboboxProps {
-  options: { value: string; label: string }[]
+  options: ReadonlyArray<{ readonly value: string; readonly label: string | React.ReactNode }>
   value: string
   onChange: (value: string) => void
   placeholder?: string
